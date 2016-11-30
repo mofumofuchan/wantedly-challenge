@@ -3,10 +3,11 @@ require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
   def setup
-    @user = User.new(name: "mofumofu")
+    @user = User.new(name: "mofumofu",
+                     password: "hogefuga", password_confirmation: "hogefuga")
   end
 
-  test "validでなくてはならない" do
+  test "サンプルの@userがvalidでなくてはならない" do
     assert @user.valid?
   end
 
@@ -24,5 +25,15 @@ class UserTest < ActiveSupport::TestCase
     duplicate_user = @user.dup
     @user.save
     assert_not duplicate_user.valid?
+  end
+
+  test "passwordは空白ではダメ" do
+    @user.password = @user.password_confirmation = " "*6
+    assert_not @user.valid?
+  end
+
+  test "passwordは最低6文字ないとダメ" do
+    @user.password = @user.password_confirmation = "abcde"
+    assert_not @user.valid?
   end
 end
