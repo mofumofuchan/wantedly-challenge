@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'users/new'
-  get 'users/:id', to: 'users#show'
+  resources :users, :except => [:edit, :update, :destroy]
   get 'signup', to: 'users#new'
 end
