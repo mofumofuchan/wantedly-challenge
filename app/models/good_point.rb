@@ -1,0 +1,2 @@
+class GoodPoint < ApplicationRecord
+end

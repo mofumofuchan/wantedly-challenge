@@ -1,0 +1,2 @@
+class SaidGoodPoint < ApplicationRecord
+end
