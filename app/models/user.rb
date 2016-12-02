@@ -1,7 +1,7 @@
 class User < ApplicationRecord
-  #has_many :finding_good_points, classname:   "SaidGoodPoint",
-  #                               foreign_key: "from",
-  #                               dependente:  :destroy
+   has_many :finding_good_points, class_name: "SaidGoodPoint",
+                                  foreign_key: "from_id",
+                                  dependent:  :destroy
 
   validates :name, presence: true, length: { maximum: 50 },
                    uniqueness: true
