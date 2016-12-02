@@ -40,4 +40,19 @@ class UserTest < ActiveSupport::TestCase
     takami = users(:takami)
     assert_equal 2, takami.finding_good_points.count
   end
+
+  test "User:kjが指摘したGoodPointは1つ" do
+    kj = users(:kj)
+    assert_equal 1, kj.finding_good_points.count   
+  end
+  
+  test "User:takamiが指摘されたGoodPointは2つ" do
+    takami = users(:takami)
+    assert_equal 2, takami.found_good_points.count
+  end
+
+  test "User:kjが指摘されたGoodPointは1つ" do
+    kj = users(:kj)
+    assert_equal 0, kj.found_good_points.count
+  end
 end
