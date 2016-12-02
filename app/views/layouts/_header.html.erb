@@ -3,11 +3,12 @@
     <%= link_to "きみもしらない，いいところ", '/', id: "logo" %>
     <nav>
       <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to "Home",   '/' %></li>
 	<% if logged_in? %>
-	  <li><%= link_to "Profile", user_path(current_user) %></li>
+	  <li><%= link_to "My Page", user_path(current_user) %></li>
+	  <li><%= link_to "Users", index_path %></li>
 	  <li><%= link_to "Log out", logout_path, method: :delete %></li>
 	<% else %>
+	  <li><%= link_to "Home",   '/' %></li>
           <li><%= link_to "Log in", login_path %></li>
 	<% end %>
       </ul>
