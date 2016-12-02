@@ -1,1 +1,7 @@
-# empty
+takami:
+  name: takami
+  password_digest: <%= User.digest('takami') %>
+
+kj:
+  name: kj
+  password_digest: <%= User.digest('kj') %>
