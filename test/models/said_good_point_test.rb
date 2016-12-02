@@ -26,4 +26,9 @@ class SaidGoodPointTest < ActiveSupport::TestCase
     @said_good_point.good_point_id = nil
     assert_not @said_good_point.valid?
   end
+
+  # test "User#finding_good_pointsでgood_pointsが取得できる" do
+  #   @user = users(:takami)
+  #   assert_not @user.finding_good_points.nil?
+  # end
 end

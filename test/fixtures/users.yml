@@ -1,7 +1,14 @@
 takami:
+  id: 1
   name: takami
   password_digest: <%= User.digest('takami') %>
 
 kj:
+  id: 2
   name: kj
   password_digest: <%= User.digest('kj') %>
+
+sugino:
+  id: 3
+  name: sugino
+  password_digest: <%= User.digest('sugino') %>

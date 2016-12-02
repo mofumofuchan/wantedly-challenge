@@ -1,5 +1,5 @@
 class GoodPoint < ApplicationRecord
-#  belongs_to :said_good_point
+  has_many :said_good_point
 
   validates :name, presence: true
 end
