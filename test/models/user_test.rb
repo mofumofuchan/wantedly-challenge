@@ -3,8 +3,7 @@ require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
   def setup
-    @user = User.new(name: "mofumofu",
-                     password: "hogefuga", password_confirmation: "hogefuga")
+    @user = User.new(name:"inouesan", password:"inouesan",  password_confirmation:"inouesan")
   end
 
   test "サンプルの@userがvalidでなくてはならない" do
@@ -35,5 +34,25 @@ class UserTest < ActiveSupport::TestCase
   test "passwordは最低6文字ないとダメ" do
     @user.password = @user.password_confirmation = "abcde"
     assert_not @user.valid?
+  end
+
+  test "User:takamiが指摘したGoodPointは2つ" do
+    takami = users(:takami)
+    assert_equal 2, takami.finding_good_points.count
+  end
+
+  test "User:kjが指摘したGoodPointは1つ" do
+    kj = users(:kj)
+    assert_equal 1, kj.finding_good_points.count   
+  end
+  
+  test "User:takamiが指摘されたGoodPointは2つ" do
+    takami = users(:takami)
+    assert_equal 2, takami.found_good_points.count
+  end
+
+  test "User:kjが指摘されたGoodPointは1つ" do
+    kj = users(:kj)
+    assert_equal 0, kj.found_good_points.count
   end
 end

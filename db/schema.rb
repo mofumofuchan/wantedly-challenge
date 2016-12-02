@@ -10,7 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161130171441) do
+ActiveRecord::Schema.define(version: 20161202000652) do
+
+  create_table "good_points", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "said_good_points", force: :cascade do |t|
+    t.integer  "from_id",       null: false
+    t.integer  "to_id",         null: false
+    t.integer  "good_point_id", null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["from_id", "to_id", "good_point_id"], name: "index_said_good_points_on_from_id_and_to_id_and_good_point_id", unique: true
+    t.index ["from_id"], name: "index_said_good_points_on_from_id"
+    t.index ["good_point_id"], name: "index_said_good_points_on_good_point_id"
+    t.index ["to_id"], name: "index_said_good_points_on_to_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
