@@ -19,8 +19,8 @@ ActiveRecord::Schema.define(version: 20161201051446) do
   end
 
   create_table "said_good_points", force: :cascade do |t|
-    t.integer  "from",          null: false
-    t.integer  "to",            null: false
+    t.integer  "from_id",       null: false
+    t.integer  "to_id",         null: false
     t.integer  "good_point_id", null: false
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
