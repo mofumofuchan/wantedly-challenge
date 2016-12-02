@@ -19,8 +19,8 @@ class UsersGoodPointsTest < ActionDispatch::IntegrationTest
     assert_select "a[href=?]", logout_path
     assert_select "a[href=?]", user_path(@user)
     # プロフィールページでいいところが表示されるかチェック
-    assert_select "li", "元気である"
-    assert_select "li", "話が上手い"
+    assert_select "ul#good_points > li#good_point-1", /元気である/
+    assert_select "ul#good_points > li#good_point-2", /話しが上手い/
   end
   
 end
