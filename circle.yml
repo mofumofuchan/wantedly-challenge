@@ -10,5 +10,5 @@ deployment:
       - heroku maintenance:on --app wantedly-challenge
       - heroku scale worker=0 --app wantedly-challenge
       - git push -f git@heroku.com:wantedly-challenge.git $CIRCLE_SHA1:refs/heads/master
-      - heroku run 'rake db:migrate' --app wantedly-challenge
+      - heroku run 'rake db:migrate; rake db:seed' --app wantedly-challenge
       - heroku maintenance:off --app wantedly-challenge
