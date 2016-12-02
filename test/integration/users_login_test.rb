@@ -59,6 +59,6 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
   test "ログインしていなかったらユーザーページが見られないようにする" do
     get user_path(@user)
     follow_redirect!
-    assert_template login_path
+    assert_template 'sessions/new'
   end
 end
