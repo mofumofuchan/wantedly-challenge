@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class UsersController < ApplicationController
   def new
     @user = User.new
@@ -10,7 +11,9 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      #
+      log_in @user
+      # TODO ここでログイン成功の表示
+      redirect_to @user
     else
       render 'new'
     end
