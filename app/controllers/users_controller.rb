@@ -11,7 +11,8 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    @user = User.includes(:found_good_points).
+      find(params[:id])
     @good_points = @user.found_good_points
     # debugger
   end
