@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 require 'ffaker'
-require 'faker'
 
 # usersテーブルを作成
 100.times do
