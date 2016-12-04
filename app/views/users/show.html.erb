@@ -3,7 +3,7 @@
 <div>
   <ul id="good_points">
     <% i=0; @good_points.each do |good_point| %>
-      <li id="good_point-<%= i+=1 %>"><%= good_point.name %></li>
+      <li id="good_point-<%= i+=1 %>"><%= good_point[0] %> <%= good_point[1] %></li>
       <% #ここのカウンタはもう少しエレガントに書けるはず %>
     <% end %>
   </ul>
