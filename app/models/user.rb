@@ -1,15 +1,17 @@
 class User < ApplicationRecord
-  has_many :finding_good_point_codes, class_name:  "SaidGoodPoint",
+  has_many :finding_good_points,      class_name:  "SaidGoodPoint",
                                       foreign_key: "from_id",
                                       dependent:   :destroy
-  has_many :finding_good_points,      through:     :finding_good_point_codes,
-                                      source:      :good_point
 
-  has_many :found_good_point_codes,   class_name:  "SaidGoodPoint",
+ # has_many :finding_good_points_name, through:     :finding_good_points,
+ #                                     source:      :good_point
+
+  has_many :found_good_points,        class_name:  "SaidGoodPoint",
                                       foreign_key: "to_id",
                                       dependent:   :destroy
-  has_many :found_good_points,        through:     :found_good_point_codes,
-                                      source:      :good_point
+
+ # has_many :found_good_points_name,   through:     :found_good_points,
+ #                                     source:      :good_point
 
   
   validates :name, presence: true, length: { maximum: 50 },
