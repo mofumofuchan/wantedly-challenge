@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  id: 1
+  name: 元気である
+
+two:
+  id: 2
+  name: 話しが上手い
+
+three:
+  id: 3
+  name: アジテーターとしての能力がある

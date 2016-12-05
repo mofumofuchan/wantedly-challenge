@@ -1,0 +1,28 @@
+<h1><%= @user.name %></h1>
+<h2>いいところ</h2>
+<div>
+  <ul id="good_points">
+    <%= form_tag(controller:"users", action:"good_point") do %>
+      <%= hidden_field_tag :shown_user_id, value: @user.id %>
+      <%= label_tag :name , "もっといいところ" %>
+      <%= text_field_tag :name %>
+      <%= submit_tag "追加" %>
+    <% end %>
+    <% i=0; @good_points.each do |good_point| %>
+      <li id="good_point-<%= i+=1 %>">
+	<%= good_point[1] %>
+	<div id="good_point_count">
+	<%= if good_point[2]==1 then "" else "+"+(good_point[2]-1).to_s end %>
+	</div>
+	<div id="button-<%= i+=1 %>">
+	  <% if  @yet_found_good_points.any? { |point| point.good_point_id == good_point[0] } %>
+	    i think so!
+	  <% else %>
+	    <%= button_to '+1', said_good_points_create_path,method: :post,
+	    params: {from: current_user.id, to: @user.id, good_point: good_point[0] }  %>
+	  <% end %>
+	</div>
+      </li>
+    <% end %>
+  </ul>
+</div>
