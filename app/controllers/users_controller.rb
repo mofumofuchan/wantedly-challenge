@@ -24,7 +24,8 @@ EOS
     @good_points = ActiveRecord::Base.connection.
       select_all(query % @user.id).rows
 
-    # @aaa =  SaidGoodPoint.where from_id:1 ,to_id:1
+    # 既にcurrent_userが投票済みのいいところを取得
+    @yet_found_good_points =  SaidGoodPoint.where from_id: current_user.id ,to_id: @user.id
     # debugger
   end
 
