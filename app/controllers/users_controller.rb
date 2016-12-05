@@ -14,7 +14,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     # TODO 生のSQLではなく，ActiveRecordを使って書き直す
     query =<<EOS
-SELECT good_points.name, COUNT(good_points.name) AS count_good_points_name
+SELECT good_points.id, good_points.name, COUNT(good_points.name) AS count_good_points_name
 FROM said_good_points
 INNER JOIN good_points ON good_points.id = said_good_points.good_point_id
 WHERE said_good_points.to_id = %d
@@ -23,6 +23,10 @@ ORDER BY count_good_points_name DESC;
 EOS
     @good_points = ActiveRecord::Base.connection.
       select_all(query % @user.id).rows
+
+    # 既にcurrent_userが投票済みのいいところを取得
+    @yet_found_good_points =  SaidGoodPoint.where from_id: current_user.id ,to_id: @user.id
+    # debugger
   end
 
   def create
@@ -37,7 +41,7 @@ EOS
   end
 
   private
-
+  
     def user_params
       params.require(:user).permit(:name, :email,
                                    :password, :password_confirmation)

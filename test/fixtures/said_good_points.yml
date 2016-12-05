@@ -3,7 +3,7 @@
 one:
   id: 1
   from_id: 1
-  to_id: 1
+  to_id: 2
   good_point_id: 1
 
 two:
