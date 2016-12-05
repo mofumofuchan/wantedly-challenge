@@ -3,8 +3,10 @@
 <div>
   <ul id="good_points">
     <% i=0; @good_points.each do |good_point| %>
-      <li id="good_point-<%= i+=1 %>"><%= good_point[0] %>  <%= if good_point[1]==1 then "" else "+"+(good_point[1]-1).to_s end %></li>
-      <% #ここのカウンタはもう少しエレガントに書けるはず %>
+      <li id="good_point-<%= i+=1 %>">
+	<%= good_point[1] %>
+	<%= if good_point[2]==1 then "" else "+"+(good_point[2]-1).to_s end %>
+	<%= button_to  '+1', said_good_points_create_path, method: :post, params: {from: current_user.id, to: @user.id, good_point: good_point[0] }  %></li>
     <% end %>
   </ul>
 </div>
