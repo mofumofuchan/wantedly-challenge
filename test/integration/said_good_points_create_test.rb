@@ -17,11 +17,15 @@ class SaidGoodPointsCreateTest < ActionDispatch::IntegrationTest
     assert_template 'users/show'
     assert_select "a[href=?]", logout_path
     assert_select "a[href=?]", user_path(@user)
+
     # いいところを+1
-    post said_good_points_create_path, params: { from:1, to:3, good_point:3 }
-    assert_redirect_to @user
-    follow_redirect!
-    # 数字がプラスされたかチェック
+    # @request.env['HTTP_REFERER'] = user_path(@user)
+    #post said_good_points_create_path, params: { from:1, to:1, good_point:2 }
+    # assert_redirect_to @user
+    # follow_redirect!
+    # 数字がプラスされ，ボタンが消えたかチェック
+    # assert_select "ul#good_points > li#good_point-1 > div#good_point_count", 2
+    
     # logout
     delete logout_path
     assert_not is_logged_in?

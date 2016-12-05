@@ -1,12 +1,18 @@
-<h1><%= @user.name %></h1>
+b<h1><%= @user.name %></h1>
 <h2>いいところ</h2>
 <div>
   <ul id="good_points">
     <% i=0; @good_points.each do |good_point| %>
       <li id="good_point-<%= i+=1 %>">
 	<%= good_point[1] %>
+	<div id="good_point_count">
 	<%= if good_point[2]==1 then "" else "+"+(good_point[2]-1).to_s end %>
-	<%= button_to  '+1', said_good_points_create_path, method: :post, params: {from: current_user.id, to: @user.id, good_point: good_point[0] }  %></li>
+	</div>
+	<div id="button-<%= i+=1 %>">
+	<%= button_to '+1', said_good_points_create_path,method: :post,
+	  params: {from: current_user.id, to: @user.id, good_point: good_point[0] }  %>
+	</div>
+      </li>
     <% end %>
   </ul>
 </div>

@@ -23,6 +23,9 @@ ORDER BY count_good_points_name DESC;
 EOS
     @good_points = ActiveRecord::Base.connection.
       select_all(query % @user.id).rows
+
+    # @aaa =  SaidGoodPoint.where from_id:1 ,to_id:1
+    # debugger
   end
 
   def create
