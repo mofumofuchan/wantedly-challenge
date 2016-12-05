@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 class UsersController < ApplicationController
   before_action :logged_in_user, only: [:index, :show]
-
+  
+  
   def index
     @users = User.all
   end
@@ -12,6 +13,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @shown_user = @user
+
     # TODO 生のSQLではなく，ActiveRecordを使って書き直す
     query =<<EOS
 SELECT good_points.id, good_points.name, COUNT(good_points.name) AS count_good_points_name
@@ -26,7 +29,7 @@ EOS
 
     # 既にcurrent_userが投票済みのいいところを取得
     @yet_found_good_points =  SaidGoodPoint.where from_id: current_user.id ,to_id: @user.id
-    # debugger
+    # @good_point = GoodPoint
   end
 
   def create
@@ -40,12 +43,34 @@ EOS
     end
   end
 
+  def good_point
+    good_point = GoodPoint.new(name: params[:name])
+    unless good_point.save
+      # エラー処理
+      return
+    end
+
+    # いいところが追加されたページのユーザ番号を取得 TODO もっとまともな方法があるはずor設計の見直し
+    to_id = params[:shown_user_id].scan(/=>(\d+)/).flatten[0].to_i
+
+    # debugger
+    
+    said_good_point = SaidGoodPoint.new(from_id: current_user.id, to_id: to_id,
+                                        good_point_id: good_point.id)
+    unless said_good_point.save
+      # エラー処理
+    end
+
+    redirect_to :back # TODO この書き方は変
+  end
+  
   private
   
     def user_params
       params.require(:user).permit(:name, :email,
                                    :password, :password_confirmation)
     end
+
 
     
     def logged_in_user
