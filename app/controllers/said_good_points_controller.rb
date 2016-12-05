@@ -4,6 +4,10 @@
 class SaidGoodPointsController < ApplicationController
   protect_from_forgery :except => [:create]
 
+  def new
+    @said_good_point = SaidGoodPoint.new
+  end
+  
   def create
     unless logged_in?
         redirect_to login_url and return

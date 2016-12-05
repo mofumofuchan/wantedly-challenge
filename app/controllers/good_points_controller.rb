@@ -1,5 +1,11 @@
 # -*- coding: utf-8 -*-
 class GoodPointsController < ApplicationController
+  protect_from_forgery :except => [:create]
+
+  def new
+    @good_point = GoodPoint.new
+  end
+
   def create
     unless logged_in?
       redirect_to login_url and return

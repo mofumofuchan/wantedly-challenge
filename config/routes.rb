@@ -11,4 +11,5 @@ Rails.application.routes.draw do
   delete '/logout',  to: 'sessions#destroy'
 
   post 'said_good_points/create'
+  post 'users/good_point'
 end
