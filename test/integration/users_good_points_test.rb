@@ -6,6 +6,7 @@ class UsersGoodPointsTest < ActionDispatch::IntegrationTest
   def setup
     @user = users(:takami)
   end
+
   
   test ":takamiのいいところが表示されるかテスト" do
     get login_path
@@ -19,8 +20,7 @@ class UsersGoodPointsTest < ActionDispatch::IntegrationTest
     assert_select "a[href=?]", logout_path
     assert_select "a[href=?]", user_path(@user)
     # プロフィールページでいいところが表示されるかチェック
-    assert_select "ul#good_points > li#good_point-1", /元気である/
-    assert_select "ul#good_points > li#good_point-2", /話しが上手い/
+    assert_select "ul#good_points > li#good_point-1", /話しが上手い/
   end
   
 end
